@@ -29,6 +29,8 @@ def setupLogger():
 
 
 # Define the data structure for a configuration file
+
+
 @dataclass
 class InputData:
     x_start: float
@@ -86,7 +88,7 @@ def getArguments():
     return args
 
 
-def plotPath(start: Point, goal: Point, polygons: List[Polygon], path: List[Point], inputData: InputData, show=False):
+def plotPath(start: Point, goal: Point, polygons: List[Polygon], path: List[Point], inputData: InputData):
     # Create a new figure and axes
     fig, ax = plt.subplots()
 
@@ -106,11 +108,10 @@ def plotPath(start: Point, goal: Point, polygons: List[Polygon], path: List[Poin
     ax.set_ylim([0, inputData.y_space_size])
 
     leg = ax.legend()
-
+    ax.grid()
     # Save the plot to a PNG file and show it
-    plt.savefig('solution.png')
-    if show:
-        plt.show()
+    plt.savefig('scene.png')
+    plt.show()
 
 
 # Main Helpers
@@ -203,8 +204,11 @@ def dijkstra(graph: Graph, start: Point, goal: Point, world: Polygon) -> Optiona
     return None  # If no path is found, return None
 
 
-def calculatePath() -> Optional[List[List[float]]]:
-    args = getArguments()
+def calculatePath(**opt) -> Optional[List[List[float]]]:
+    if "args" not in opt:
+        args = getArguments()
+    else:
+        args = opt["args"]
     # Load input from YAML file
     try:
         inputDataDict = yaml.load(open(args.inputyaml), yaml.Loader)
@@ -249,8 +253,12 @@ def calculatePath() -> Optional[List[List[float]]]:
         logging.info("✨ Path found: %s", str(path))
         logging.info("✨ Result: %s", str(listPath))
 
-        plotPath(start, goal, polygons, path, inputData, show=bool(args.plot))
+        if args.plot:
+            plotPath(start, goal, polygons, path, inputData)
 
+        if args.output:
+            with open(args.output, "w") as f:
+                f.write(str(listPath))
         return listPath
 
     else:

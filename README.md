@@ -31,7 +31,8 @@ pip install -r requirements.txt
    y_goal: 98
    x_space_size: 100
    y_space_size: 100
-   list_obstacles: [[[5, 5], [10, 5], [8, 12]], [[50, 60], [70, 40], [80, 90], [60, 80]]]
+   list_obstacles:
+     [[[5, 5], [10, 5], [8, 12]], [[50, 60], [70, 40], [80, 90], [60, 80]]]
    ```
 1. Run the following command in your terminal
    - To show only the path coordinates
@@ -53,6 +54,7 @@ pip install -r requirements.txt
 # Examples
 
 - Successful execution:
+
   - Config
     ```yaml
     x_start: 2
@@ -61,7 +63,8 @@ pip install -r requirements.txt
     y_goal: 98
     x_space_size: 100
     y_space_size: 100
-    list_obstacles: [[[5, 5], [10, 5], [8, 12]], [[50, 60], [70, 40], [80, 90], [60, 80]]]
+    list_obstacles:
+      [[[5, 5], [10, 5], [8, 12]], [[50, 60], [70, 40], [80, 90], [60, 80]]]
     ```
   - Output: `[[2.0, 2.0], [8.0, 12.0], [60.0, 80.0], [80.0, 90.0], [98.0, 98.0]]`
   - Plot: ![alt text](imgs/success.png)
@@ -75,14 +78,23 @@ pip install -r requirements.txt
     y_goal: 98
     x_space_size: 100
     y_space_size: 100
-    list_obstacles: [[[5, -1], [-1, 5], [5, 5]], [[50, 60], [70, 40], [80, 90], [60, 80]]]
+    list_obstacles:
+      [[[5, -1], [-1, 5], [5, 5]], [[50, 60], [70, 40], [80, 90], [60, 80]]]
     ```
   - Output: `ERROR: 😕 No path found`
   - Plot (`This is just a visual aid`): ![alt text](imgs/error.png)
 
+# Test file:
+
+There are 3 test cases using unittest
+
+```zsh
+python3 -m unittest test.py
+```
+
 # Logs example:
 
-``` zsh
+```zsh
 ➜ python3 pathPlanning.py configuration_file.yaml --plot
 2023-04-08 21:55:51 INFO: ⏳ Generating graph...
 2023-04-08 21:55:51 INFO: ✅ Graph generated
