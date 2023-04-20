@@ -197,7 +197,8 @@ def dijkstra(graph: Graph, start: Point, goal: Point, world: Polygon) -> Optiona
             if neighbor not in visited:  # If the neighbor has not been visited
                 if not neighbor.intersects(world):
                     logging.warning("Point outside the boundaries")
-                    return None  # Point is outside the boundaries
+                    continue
+                #     return None  # Point is outside the boundaries
                 heapq.heappush(
                     pq, PQElement(cost + graph[current][neighbor]["weight"], neighbor, path))  # Add neighbor to the priority queue
 
