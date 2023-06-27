@@ -110,7 +110,7 @@ def plotPath(start: Point, goal: Point, polygons: List[Polygon], path: List[Poin
     leg = ax.legend()
     ax.grid()
     # Save the plot to a PNG file and show it
-    plt.savefig('scene.png')
+    # plt.savefig('scene.png')
     plt.show()
 
 
