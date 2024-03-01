@@ -1,0 +1,21 @@
+4846
+.......#
+..#....#
+.###...#
+.....###
+G=ub(B)
+B=ub(m)lib(l)(m)
+H=ib()(mmHllmll)
+I=III
+1 1 w
+G
+1 1 e
+G
+2 2 n
+G
+4 1 s
+ib(lib()(mmm))(mmmm)
+1 1 e
+H 
+2 2 s
+I
